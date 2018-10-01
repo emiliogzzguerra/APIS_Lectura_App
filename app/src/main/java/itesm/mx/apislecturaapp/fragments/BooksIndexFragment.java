@@ -19,8 +19,10 @@ public class BooksIndexFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.books_index_fragment, container, false);
+        super.onCreate(savedInstanceState);
 
-        GridView gridview = getView().findViewById(R.id.books_index_gridview);
+        GridView gridview = (GridView) layout.findViewById(R.id.books_index_gridview);
         gridview.setAdapter(new BookCoverAdapter(getActivity()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -31,7 +33,6 @@ public class BooksIndexFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.books_index_fragment, container, false);
+        return layout;
     }
 }
