@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/booksIndexFragment">
 
+    <fragment
+        android:id="@+id/bookDetailsFragment"
+        android:name="itesm.mx.apislecturaapp.fragments.BookDetailsFragment"
+        android:label="book_details_fragment"
+        tools:layout="@layout/book_details_fragment" >
+        <argument
+            android:name="bookid"
+            android:defaultValue="guerrero"
+            app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/booksIndexFragment"
+        android:name="itesm.mx.apislecturaapp.fragments.BooksIndexFragment"
+        android:label="books_index_fragment"
+        tools:layout="@layout/books_index_fragment" >
+        <action
+            android:id="@+id/action_booksIndexFragment_to_bookDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/booksIndexFragment"
+            app:destination="@id/bookDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newReadingGoal"
+        android:name="itesm.mx.apislecturaapp.NewReadingGoal"
+        android:label="fragment_new_reading_goal"
+        tools:layout="@layout/fragment_new_reading_goal" />
 </navigation>
