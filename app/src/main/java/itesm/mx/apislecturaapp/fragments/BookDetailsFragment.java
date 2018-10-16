@@ -35,6 +35,7 @@ public class BookDetailsFragment extends Fragment {
         String bookid = args.getBookid();
         Book book = mLibrary.getBook(bookid);
         imageView.setImageResource(book.getCoverThumbId());
+        imageView.setImageDrawable((getResources().getDrawable(book.getCoverThumbId())));
         titleTextView.setText(book.getTitle());
         authorTextView.setText(book.getAuthor());
         numPagesTextView.setText("" + book.getNumPages());

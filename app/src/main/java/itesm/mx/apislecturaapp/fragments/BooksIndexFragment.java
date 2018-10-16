@@ -45,9 +45,9 @@ public class BooksIndexFragment extends Fragment {
                 BooksIndexFragmentDirections.ActionBooksIndexFragmentToBookDetailsFragment action =
                         BooksIndexFragmentDirections.actionBooksIndexFragmentToBookDetailsFragment();
                 action.setBookid(mPositionToBookId.get(position));
-                Navigation.findNavController(view).navigate(R.id.action_booksIndexFragment_to_bookDetailsFragment);
-//                Toast.makeText(getActivity(), "" + position,
-//                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + mPositionToBookId.get(position),
+                        Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
