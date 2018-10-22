@@ -41,5 +41,5 @@
         android:id="@+id/newReadingGoal"
         android:name="itesm.mx.apislecturaapp.NewReadingGoal"
         android:label="fragment_new_reading_goal"
-        tools:layout="@layout/fragment_new_reading_goal" />
+        tools:layout="@layout/new_goal_fragment" />
 </navigation>
