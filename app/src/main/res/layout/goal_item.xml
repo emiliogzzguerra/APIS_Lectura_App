@@ -17,8 +17,8 @@
         android:padding="8dp"
         android:layout_gravity="center"
         android:minHeight="100dp"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="6dp">
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
 
         <ImageView
             android:padding="4dp"

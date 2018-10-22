@@ -13,8 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.navigation.Navigation;
-import itesm.mx.apislecturaapp.Book;
-import itesm.mx.apislecturaapp.Library;
+import itesm.mx.apislecturaapp.model.Library;
 import itesm.mx.apislecturaapp.R;
 import itesm.mx.apislecturaapp.behavior.BookCoverAdapter;
 

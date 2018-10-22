@@ -5,16 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import itesm.mx.apislecturaapp.Book;
-import itesm.mx.apislecturaapp.Library;
+import itesm.mx.apislecturaapp.model.Book;
+import itesm.mx.apislecturaapp.model.Library;
 import itesm.mx.apislecturaapp.R;
-import itesm.mx.apislecturaapp.behavior.BookCoverAdapter;
 
 public class BookDetailsFragment extends Fragment {
     private Library mLibrary;

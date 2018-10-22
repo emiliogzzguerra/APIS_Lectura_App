@@ -1,4 +1,4 @@
-package itesm.mx.apislecturaapp;
+package itesm.mx.apislecturaapp.model;
 
 public class Book {
     private String mTitle;

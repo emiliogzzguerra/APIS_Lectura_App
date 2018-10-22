@@ -1,7 +1,10 @@
-package itesm.mx.apislecturaapp;
+package itesm.mx.apislecturaapp.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import itesm.mx.apislecturaapp.R;
+import itesm.mx.apislecturaapp.model.Book;
 
 public class Library {
     private Map<String, Book> mBooks;
