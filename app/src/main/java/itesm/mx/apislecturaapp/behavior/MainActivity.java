@@ -7,12 +7,16 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,7 +28,7 @@ import itesm.mx.apislecturaapp.fragments.NewBookFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+
 
 
     @Override
@@ -35,20 +39,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavView = (BottomNavigationView) findViewById(R.id.navigation_bar);
         NavigationUI.setupWithNavController(bottomNavView, navController);
 
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_graph);
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupWithNavController(navigationView, navController);
-
-        // Begin the transaction
-//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Replace the contents of the container with the new fragment
-//        ft.replace(R.id.your_placeholder, new BooksIndexFragment());
-        // or ft.add(R.id.your_placeholder, new FooFragment());
-        // Complete the changes added above
-//        ft.commit();
-
-//        BottomNavigationView navigation_bar_items = (BottomNavigationView) findViewById(R.id.navigation_bar_items);
-//        navigation_bar_items.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
 
@@ -56,5 +46,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp();
     }
+
 
 }

@@ -2,54 +2,50 @@ package itesm.mx.apislecturaapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import androidx.navigation.Navigation;
-import itesm.mx.apislecturaapp.Library;
+import java.util.ArrayList;
 import itesm.mx.apislecturaapp.R;
-import itesm.mx.apislecturaapp.behavior.BookCoverAdapter;
+import itesm.mx.apislecturaapp.behavior.GoalsAdapter;
 
-public class GoalsFragment extends Fragment {
+public class GoalsFragment extends Fragment implements GoalsAdapter.ItemClickListener {
 
-    Library mLibrary;
-    private Map<Integer, String> mPositionToBookId;
+    GoalsAdapter mGoalsAdapter;
+    RecyclerView mGoalsRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.books_index_fragment, container, false);
+        View goals_view = inflater.inflate(R.layout.goals_view, container, false);
         super.onCreate(savedInstanceState);
-        mLibrary = new Library();
-        mPositionToBookId = new HashMap<>();
-        mPositionToBookId.put(0, "guerrero");
-        mPositionToBookId.put(1, "monje");
-        mPositionToBookId.put(2, "psicoanalista");
-        mPositionToBookId.put(3, "sombra");
 
-        GridView gridview = (GridView) layout.findViewById(R.id.books_index_gridview);
-        gridview.setAdapter(new BookCoverAdapter(getActivity()));
+        // TODO: Substituir estos datos dummy con metas de verdad.
+        ArrayList<String> metasDummy = new ArrayList<>();
+        metasDummy.add("Manual Guerrero");
+        metasDummy.add("La sombra");
+        metasDummy.add("El psicoanalista");
 
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                BooksIndexFragmentDirections.ActionBooksIndexFragmentToBookDetailsFragment action =
-                        BooksIndexFragmentDirections.actionBooksIndexFragmentToBookDetailsFragment();
-                action.setBookid(mPositionToBookId.get(position));
-                Toast.makeText(getActivity(), "" + mPositionToBookId.get(position),
-                        Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(view).navigate(action);
-            }
-        });
+        // Setup de la lista de metas RecyclerView.
+        mGoalsRecyclerView = goals_view.findViewById(R.id.goals_list);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mGoalsRecyclerView.setLayoutManager(mLayoutManager);
+        mGoalsAdapter = new GoalsAdapter(getActivity(), metasDummy);
+        mGoalsAdapter.setClickListener(this);
+        mGoalsRecyclerView.setAdapter(mGoalsAdapter);
 
-        return layout;
+        return goals_view;
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        // TODO: Go to goal details view when item clicked
+//        Toast.makeText(this, "Meta: " + mGoalsAdapter.getItem(position) + " on row " + position, Toast.LENGTH_SHORT).show();
     }
 }

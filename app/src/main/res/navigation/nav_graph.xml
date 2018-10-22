@@ -34,7 +34,7 @@
         android:id="@+id/navigation_goals"
         android:name="itesm.mx.apislecturaapp.fragments.GoalsFragment"
         android:label="goals_fragment"
-        tools:layout="@layout/goals_fragment" >
+        tools:layout="@layout/goals_view" >
 
     </fragment>
     <fragment
