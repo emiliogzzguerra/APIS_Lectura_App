@@ -5,22 +5,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
 
 import itesm.mx.apislecturaapp.R;
+import itesm.mx.apislecturaapp.model.Goal;
 
 public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<Goal> mGoals;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public GoalsAdapter(Context context, List<String> data) {
+    public GoalsAdapter(Context context, List<Goal> goals) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        this.mGoals = goals;
     }
 
     // inflates the row layout from xml when needed
@@ -33,24 +36,42 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String title = mData.get(position);
-        holder.mGoalTitle.setText(title);
+        Goal goal = mGoals.get(position);
+        holder.mBookCover.setImageResource(goal.getBook().getCoverThumbId());
+        holder.mGoalTitle.setText(goal.getTitle());
+        holder.mPagesForToday.setText("Paginas por leer hoy: " + goal.getPagesPerDay());
+        // TODO: Compute the reading streak somewhere.
+        holder.mReadingStreak.setText("Racha lectura: 3");
+        holder.mRemainingPages.setText("Paginas restantes: " + goal.getRemainingPages());
+        holder.mGoalProgress.setMin(0);
+        holder.mGoalProgress.setMax(goal.getBook().getNumPages());
+        holder.mGoalProgress.setProgress(goal.getProgress());
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mGoals.size();
     }
 
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        ImageView mBookCover;
         TextView mGoalTitle;
+        TextView mPagesForToday;
+        TextView mReadingStreak;
+        TextView mRemainingPages;
+        ProgressBar mGoalProgress;
 
         ViewHolder(View itemView) {
             super(itemView);
+            mBookCover = itemView.findViewById(R.id.goal_book_cover_img);
             mGoalTitle = itemView.findViewById(R.id.goal_title);
+            mPagesForToday = itemView.findViewById(R.id.pages_for_today);
+            mReadingStreak = itemView.findViewById(R.id.reading_streak);
+            mRemainingPages = itemView.findViewById(R.id.remaining_pages);
+            mGoalProgress = itemView.findViewById(R.id.goal_progress);
             itemView.setOnClickListener(this);
         }
 
@@ -60,9 +81,8 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
         }
     }
 
-    // convenience method for getting data at click position
-    public String getItem(int id) {
-        return mData.get(id);
+    public Goal getGoal(int id) {
+        return mGoals.get(id);
     }
 
     // allows clicks events to be caught

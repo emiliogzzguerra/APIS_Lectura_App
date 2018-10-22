@@ -65,6 +65,11 @@ public class Goal {private String mTitle;
         return mRemainingPages;
     }
 
+    public int getProgress() {
+        // Percent of pages read.
+        return mBook.getNumPages() - getRemainingPages();
+    }
+
     public void decreaseRemainingPages(int pagesToDecrease) {
         mRemainingPages -= max(pagesToDecrease, 0);
     }

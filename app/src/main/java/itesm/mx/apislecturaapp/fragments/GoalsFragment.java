@@ -9,12 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import itesm.mx.apislecturaapp.R;
 import itesm.mx.apislecturaapp.behavior.GoalsAdapter;
+import itesm.mx.apislecturaapp.model.Book;
+import itesm.mx.apislecturaapp.model.Goal;
+import itesm.mx.apislecturaapp.model.Library;
 
 public class GoalsFragment extends Fragment implements GoalsAdapter.ItemClickListener {
 
+    Library mLibrary;
     GoalsAdapter mGoalsAdapter;
     RecyclerView mGoalsRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
@@ -25,13 +30,11 @@ public class GoalsFragment extends Fragment implements GoalsAdapter.ItemClickLis
                              Bundle savedInstanceState) {
         View goals_view = inflater.inflate(R.layout.goals_view, container, false);
         super.onCreate(savedInstanceState);
-
+        mLibrary = new Library();
         // TODO: Substituir estos datos dummy con metas de verdad.
-        ArrayList<String> metasDummy = new ArrayList<>();
-        metasDummy.add("Manual Guerrero");
-        metasDummy.add("La sombra");
-        metasDummy.add("El psicoanalista");
-
+        ArrayList<Goal> metasDummy = new ArrayList<>();
+        metasDummy.add(new Goal(LocalDate.now().plusMonths(2), mLibrary.getBook("guerrero")));
+        metasDummy.get(0).decreaseRemainingPages(89);
         // Setup de la lista de metas RecyclerView.
         mGoalsRecyclerView = goals_view.findViewById(R.id.goals_list);
         mLayoutManager = new LinearLayoutManager(getActivity());
