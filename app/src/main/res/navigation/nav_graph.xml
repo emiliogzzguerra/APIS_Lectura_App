@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/booksIndexFragment">
+    app:startDestination="@id/navigation_goals">
 
     <fragment
         android:id="@+id/bookDetailsFragment"
@@ -17,7 +17,7 @@
 
     </fragment>
     <fragment
-        android:id="@+id/booksIndexFragment"
+        android:id="@+id/navigation_books"
         android:name="itesm.mx.apislecturaapp.fragments.BooksIndexFragment"
         android:label="books_index_fragment"
         tools:layout="@layout/books_index_fragment" >
@@ -25,10 +25,17 @@
             android:id="@+id/action_booksIndexFragment_to_bookDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/booksIndexFragment"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_in_right"
+            app:popUpTo="@id/navigation_books"
             app:destination="@id/bookDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_goals"
+        android:name="itesm.mx.apislecturaapp.fragments.GoalsFragment"
+        android:label="goals_fragment"
+        tools:layout="@layout/goals_fragment" >
+
     </fragment>
     <fragment
         android:id="@+id/newReadingGoal"

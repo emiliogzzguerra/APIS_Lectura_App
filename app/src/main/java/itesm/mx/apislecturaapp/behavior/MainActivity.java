@@ -26,45 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Context context = getApplicationContext();
-            CharSequence text;
-            Toast toast;
-            int duration = Toast.LENGTH_SHORT;
-            FragmentTransaction ft = null;
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    ft = getSupportFragmentManager().beginTransaction();
-//                    ft.replace(R.id.your_placeholder, new BooksIndexFragment());
-                    ft.commit();
-                    return true;
-                case R.id.navigation_dashboard:
-                    ft = getSupportFragmentManager().beginTransaction();
-//                    ft.replace(R.id.your_placeholder, new NewBookFragment());
-                    ft.commit();
-                    return true;
-                case R.id.navigation_notifications:
-                    // Begin the transaction
-                    ft = getSupportFragmentManager().beginTransaction();
-                    // Replace the contents of the container with the new fragment
-//                    ft.replace(R.id.your_placeholder, new DrawerFragment());
-                    // or ft.add(R.id.your_placeholder, new FooFragment());
-                    // Complete the changes added above
-                    ft.commit();
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        BottomNavigationView bottomNavView = (BottomNavigationView) findViewById(R.id.navigation_bar);
+        NavigationUI.setupWithNavController(bottomNavView, navController);
 
 //        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_graph);
 //        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -78,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         // Complete the changes added above
 //        ft.commit();
 
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+//        BottomNavigationView navigation_bar_items = (BottomNavigationView) findViewById(R.id.navigation_bar_items);
+//        navigation_bar_items.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
 
