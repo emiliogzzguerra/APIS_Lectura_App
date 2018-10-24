@@ -10,6 +10,7 @@
         android:name="itesm.mx.apislecturaapp.fragments.BookDetailsFragment"
         android:label="book_details_fragment"
         tools:layout="@layout/book_details_fragment" >
+
         <argument
             android:name="bookid"
             android:defaultValue="guerrero"
