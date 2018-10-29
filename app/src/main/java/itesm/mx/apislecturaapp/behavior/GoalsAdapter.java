@@ -37,14 +37,14 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Goal goal = mGoals.get(position);
-        holder.mBookCover.setImageResource(goal.getBook().getCoverThumbId());
+//        holder.mBookCover.setImageResource(goal.getBook().getCoverThumbId());
         holder.mGoalTitle.setText(goal.getId());
         holder.mPagesForToday.setText("Paginas por leer hoy: " + goal.getPagesPerDay());
         // TODO: Compute the reading streak somewhere.
         holder.mReadingStreak.setText("Racha lectura: 3");
         holder.mRemainingPages.setText("Paginas restantes: " + goal.getRemainingPages());
         holder.mGoalProgress.setMin(0);
-        holder.mGoalProgress.setMax(goal.getBook().getNumPages());
+//        holder.mGoalProgress.setMax(goal.getBook().getNumPages());
         holder.mGoalProgress.setProgress(goal.getProgress());
     }
 

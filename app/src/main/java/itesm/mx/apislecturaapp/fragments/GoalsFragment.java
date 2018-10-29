@@ -33,7 +33,7 @@ public class GoalsFragment extends Fragment implements GoalsAdapter.ItemClickLis
         mLibrary = new Library();
         // TODO: Substituir estos datos dummy con metas de verdad.
         ArrayList<Goal> metasDummy = new ArrayList<>();
-        metasDummy.add(new Goal(LocalDate.now().plusMonths(2), mLibrary.getBook("guerrero")));
+        metasDummy.add(new Goal(LocalDate.now().plusMonths(2), "guerrero"));
         metasDummy.get(0).decreaseRemainingPages(89);
         // Setup de la lista de metas RecyclerView.
         mGoalsRecyclerView = goals_view.findViewById(R.id.goals_list);
