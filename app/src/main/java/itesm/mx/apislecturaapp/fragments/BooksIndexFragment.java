@@ -11,7 +11,6 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import androidx.navigation.Navigation;
@@ -36,16 +35,6 @@ public class BooksIndexFragment extends Fragment {
 
         ArrayList<Book> arrayList = dao.getAllBooks();
 
-        dao.close();
-
-        mPositionToBookId = new HashMap<>();
-        mPositionToBookId.put(0, "guerrero");
-        mPositionToBookId.put(1, "monje");
-        mPositionToBookId.put(2, "psicoanalista");
-        mPositionToBookId.put(3, "sombra");
-
-
-
         GridView gridview = (GridView) layout.findViewById(R.id.books_index_gridview);
         gridview.setAdapter(new BookCoverAdapter(getActivity()));
 
@@ -54,10 +43,11 @@ public class BooksIndexFragment extends Fragment {
                                     int position, long id) {
                 BooksIndexFragmentDirections.ActionBooksIndexFragmentToBookDetailsFragment action =
                         BooksIndexFragmentDirections.actionBooksIndexFragmentToBookDetailsFragment();
-                action.setBookid(mPositionToBookId.get(position));
-                Toast.makeText(getActivity(), "" + mPositionToBookId.get(position),
+                action.setBookid(position);
+                Toast.makeText(getActivity(), "" + position,
                         Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(action);
+                dao.close();
             }
         });
 

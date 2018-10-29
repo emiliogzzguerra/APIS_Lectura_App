@@ -31,8 +31,10 @@ public class BookDetailsFragment extends Fragment {
         TextView numPagesTextView = (TextView) layout.findViewById(R.id.book_pagenum);
 
         BookDetailsFragmentArgs args = BookDetailsFragmentArgs.fromBundle(getArguments());
-        String bookid = args.getBookid();
-        Book book = dao.findBook(Integer.valueOf(bookid));
+        int bookid = args.getBookid() + 1;
+        System.out.println(bookid);
+        Book book = dao.findBook(bookid);
+        System.out.println(book.getAuthor());
         dao.close();
         imageView.setImageResource(book.getCoverThumbId());
         imageView.setImageDrawable((getResources().getDrawable(book.getCoverThumbId())));
