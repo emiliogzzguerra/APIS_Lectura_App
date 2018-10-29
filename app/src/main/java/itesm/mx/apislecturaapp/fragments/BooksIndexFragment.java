@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import androidx.navigation.Navigation;
 import itesm.mx.apislecturaapp.Database.LibraryOperations;
@@ -22,7 +20,6 @@ import itesm.mx.apislecturaapp.model.Book;
 public class BooksIndexFragment extends Fragment {
 
     public LibraryOperations dao;
-    private Map<Integer, String> mPositionToBookId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,8 +41,6 @@ public class BooksIndexFragment extends Fragment {
                 BooksIndexFragmentDirections.ActionBooksIndexFragmentToBookDetailsFragment action =
                         BooksIndexFragmentDirections.actionBooksIndexFragmentToBookDetailsFragment();
                 action.setBookid(position);
-                Toast.makeText(getActivity(), "" + position,
-                        Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(action);
                 dao.close();
             }

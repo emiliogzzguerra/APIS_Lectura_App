@@ -24,7 +24,6 @@ public class LibraryOperations {
 
     public void open() throws SQLException {
         try{
-
             db = dbHelper.getWritableDatabase();
             System.out.println("Just opened!");
         } catch (SQLException e){
@@ -102,21 +101,12 @@ public class LibraryOperations {
             Cursor cursor = db.rawQuery(selectQuery, null);
             if (cursor.moveToFirst()) {
                 do {
-                    System.out.println("cursor 0 - " + cursor.getString(0));
-                    System.out.println("cursor 1 - " +cursor.getString(1));
-                    System.out.println("cursor 2 - " +cursor.getString(2));
-                    System.out.println("cursor 3 - " +cursor.getString(3));
-                    System.out.println("cursor 4 - " +cursor.getString(4));
-
-
                     book = new Book(Integer.valueOf(cursor.getString(0)),
                             cursor.getString(1),
                             cursor.getString(2),
                             cursor.getInt(3),
                             cursor.getInt(4));
                     listaBooks.add(book);
-
-
                 } while (cursor.moveToNext());
             }
             cursor.close();
