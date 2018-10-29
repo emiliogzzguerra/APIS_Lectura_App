@@ -1,6 +1,7 @@
 package itesm.mx.apislecturaapp.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.navigation.Navigation;
-import itesm.mx.apislecturaapp.model.Library;
 import itesm.mx.apislecturaapp.R;
 import itesm.mx.apislecturaapp.behavior.BookCoverAdapter;
+import itesm.mx.apislecturaapp.model.Library;
 
 public class BooksIndexFragment extends Fragment {
 
@@ -46,6 +47,15 @@ public class BooksIndexFragment extends Fragment {
                 action.setBookid(mPositionToBookId.get(position));
                 Toast.makeText(getActivity(), "" + mPositionToBookId.get(position),
                         Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+
+        FloatingActionButton myFab = (FloatingActionButton) layout.findViewById(R.id.fab);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                BooksIndexFragmentDirections.ActionBooksIndexFragmentToNewBookFragment action =
+                        BooksIndexFragmentDirections.actionBooksIndexFragmentToNewBookFragment();
                 Navigation.findNavController(view).navigate(action);
             }
         });

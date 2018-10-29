@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import itesm.mx.apislecturaapp.R;
-import itesm.mx.apislecturaapp.model.Book;
 
 public class Library {
     private Map<String, Book> mBooks;
@@ -39,5 +38,9 @@ public class Library {
 
     public Book getBook(String bookId){
         return mBooks.get(bookId);
+    }
+
+    public void addBook(Book book){
+        /* Implementar add a base de datos */
     }
 }

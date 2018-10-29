@@ -10,12 +10,22 @@
         android:name="itesm.mx.apislecturaapp.fragments.BookDetailsFragment"
         android:label="book_details_fragment"
         tools:layout="@layout/book_details_fragment" >
+
         <argument
             android:name="bookid"
             android:defaultValue="guerrero"
             app:argType="string" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/newBookFragment"
+        android:name="itesm.mx.apislecturaapp.fragments.NewBookFragment"
+        android:label="new_book_fragment"
+        tools:layout="@layout/new_book_fragment" >
+
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_books"
         android:name="itesm.mx.apislecturaapp.fragments.BooksIndexFragment"
@@ -29,6 +39,14 @@
             app:popExitAnim="@anim/slide_in_right"
             app:popUpTo="@id/navigation_books"
             app:destination="@id/bookDetailsFragment" />
+        <action
+            android:id="@+id/action_booksIndexFragment_to_newBookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_in_right"
+            app:popUpTo="@id/navigation_books"
+            app:destination="@id/newBookFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_goals"
