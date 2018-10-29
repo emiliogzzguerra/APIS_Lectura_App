@@ -12,5 +12,4 @@ public final class DataBaseSchema {
         public static final String COLUMN_NAME_PAGES = "pages";
         public static final String COLUMN_NAME_COVER = "cover";
     }
-
 }

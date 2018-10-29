@@ -6,17 +6,30 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import itesm.mx.apislecturaapp.R;
+import java.util.ArrayList;
+
+import itesm.mx.apislecturaapp.Database.LibraryOperations;
+import itesm.mx.apislecturaapp.model.Book;
 
 public class BookCoverAdapter extends BaseAdapter {
     private Context mContext;
+
+    public ArrayList<Book> bookList;
+
+    public LibraryOperations dao;
 
     public BookCoverAdapter(Context c) {
         mContext = c;
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        dao = new LibraryOperations(mContext);
+        dao.open();
+
+        bookList = dao.getAllBooks();
+
+        dao.close();
+        return bookList.size();
     }
 
     public Object getItem(int position) {
@@ -40,13 +53,14 @@ public class BookCoverAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+        ArrayList<Integer> mThumbIds = new ArrayList<Integer>();
+
+        for(int i = 0; i<bookList.size(); i++){
+            mThumbIds.add(bookList.get(i).getCoverThumbId());
+        }
+
+        imageView.setImageResource(mThumbIds.get(position));
+
         return imageView;
     }
-
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.guerrero, R.drawable.monje,
-            R.drawable.psicoanalista, R.drawable.sombra
-    };
 }

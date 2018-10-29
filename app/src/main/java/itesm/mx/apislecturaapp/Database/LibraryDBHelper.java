@@ -13,7 +13,7 @@ import itesm.mx.apislecturaapp.R;
 
 public class LibraryDBHelper extends SQLiteOpenHelper {
     private static final String DATABSE_NAME = "LibraryDB.db";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     public LibraryDBHelper(Context context){
         super(context, DATABSE_NAME, null, DATABASE_VERSION);
