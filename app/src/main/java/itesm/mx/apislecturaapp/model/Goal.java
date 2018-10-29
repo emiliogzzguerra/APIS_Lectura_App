@@ -1,35 +1,68 @@
 package itesm.mx.apislecturaapp.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.UUID;
 
 import static java.lang.Math.max;
 
-public class Goal {private String mTitle;
-    private LocalDate mGoalCreationDate;
+@Entity(tableName = "goals",
+        foreignKeys = @ForeignKey(entity = Book.class,
+                                  parentColumns = "isbn",
+                                  childColumns = "book_isbn"))
+public class Goal {
+
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    private String mId;
+
+    @ColumnInfo(name = "creation_date")
+    private LocalDate mCreationDate;
+
+    @ColumnInfo(name = "creation_date")
     private LocalDate mTargetDate;
-    private Book mBook;
+
+    @ColumnInfo(name = "book_isbn")
+    private String mBookIsbn;
+
+    @ColumnInfo(name = "remaining_pages")
     private int mRemainingPages;
 
-    public Goal(LocalDate targetDate, Book book) {
-        mTitle = book.getTitle();
-        mGoalCreationDate = LocalDate.now();
+    public Goal(String id, LocalDate creationDate, LocalDate targetDate, String bookIsbn, int remainingPages) {
+        mId = id;
+        mCreationDate = creationDate;
         mTargetDate = targetDate;
-        mBook = book;
-        mRemainingPages = book.getNumPages();
+        mBookIsbn = bookIsbn;
+        mRemainingPages = remainingPages;
     }
 
-    public String getTitle() {
-        return mTitle;
+    @Ignore
+    public Goal(LocalDate targetDate, String bookIsbn) {
+        mId = UUID.randomUUID().toString();
+        mCreationDate = LocalDate.now();
+        mTargetDate = targetDate;
+        mBookIsbn = bookIsbn;
+        // TODO: Fix the retrieval of a book reference
+        mRemainingPages = 300;
+//        mRemainingPages = book.getNumPages();
     }
 
-    public LocalDate getGoalCreationDate() {
-        return mGoalCreationDate;
+    public String getId() {
+        return mId;
     }
 
-    public void setGoalCreationDate(LocalDate goalCreationDate) {
-        mGoalCreationDate = goalCreationDate;
+    public LocalDate getCreationDate() {
+        return mCreationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        mCreationDate = creationDate;
     }
 
     public int getPagesPerDay() {
@@ -53,13 +86,13 @@ public class Goal {private String mTitle;
         mTargetDate = targetDate;
     }
 
-    public Book getBook() {
-        return mBook;
-    }
+//    public Book getBook() {
+//        return mBook;
+//    }
 
-    public void setBook(Book book) {
-        mBook = book;
-    }
+//    public void setBook(Book book) {
+//        mBook = book;
+//    }
 
     public int getRemainingPages() {
         return mRemainingPages;
@@ -67,7 +100,9 @@ public class Goal {private String mTitle;
 
     public int getProgress() {
         // Percent of pages read.
-        return mBook.getNumPages() - getRemainingPages();
+//        return mBook.getNumPages() - getRemainingPages();
+        // TODO: Fix the retrieval of a book reference
+        return 10;
     }
 
     public void decreaseRemainingPages(int pagesToDecrease) {

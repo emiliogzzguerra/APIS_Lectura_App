@@ -12,22 +12,26 @@ public class Library {
     public Library() {
         this.mBooks = new HashMap<String, Book>();
         this.mBooks.put("guerrero",
-                new Book("Manual del guerrero de la luz",
+                new Book("guerrero",
+                        "Manual del guerrero de la luz",
                          "Paulo Coelho",
                          392,
                          R.drawable.guerrero));
         this.mBooks.put("monje",
-                new Book("El monje que vendio su ferrari",
+                new Book("monje",
+                        "El monje que vendio su ferrari",
                         "Robin S. Sharma",
                         441,
                         R.drawable.monje));
         this.mBooks.put("psicoanalista",
-                new Book("El Psicoanalista",
+                new Book("psicoanalista",
+                        "El Psicoanalista",
                         "John Katzenbach",
                         519,
                         R.drawable.psicoanalista));
         this.mBooks.put("sombra",
-                new Book("La sombra",
+                new Book("sombra",
+                        "La sombra",
                         "John Katzenbach",
                         232,
                         R.drawable.sombra));
