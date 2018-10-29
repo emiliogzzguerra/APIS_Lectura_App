@@ -1,12 +1,14 @@
 package itesm.mx.apislecturaapp.model;
 
 public class Book {
+    private int mId;
     private String mTitle;
     private String mAuthor;
     private int mNumPages;
     private int mCoverThumbId;
 
-    public Book(String mTitle, String mAuthor, int mNumPages, int mCoverThumbId) {
+    public Book(int mId, String mTitle, String mAuthor, int mNumPages, int mCoverThumbId) {
+        this.mId = mId;
         this.mTitle = mTitle;
         this.mAuthor = mAuthor;
         this.mNumPages = mNumPages;

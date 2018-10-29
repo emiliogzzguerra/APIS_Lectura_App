@@ -10,11 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import itesm.mx.apislecturaapp.R;
-import itesm.mx.apislecturaapp.model.Library;
 
 public class NewBookFragment extends Fragment {
 
-    Library mLibrary;
     private EditText TitleField;
     private EditText AuthorField;
     private EditText PagesField;
@@ -25,8 +23,6 @@ public class NewBookFragment extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.new_book_fragment, container, false);
         super.onCreate(savedInstanceState);
-
-        //mLibrary =
 
         TitleField = layout.findViewById(R.id.text_title);
         AuthorField = layout.findViewById(R.id.text_author);

@@ -8,19 +8,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import itesm.mx.apislecturaapp.Database.LibraryOperations;
 import itesm.mx.apislecturaapp.model.Book;
-import itesm.mx.apislecturaapp.model.Library;
 import itesm.mx.apislecturaapp.R;
 
 public class BookDetailsFragment extends Fragment {
-    private Library mLibrary;
+
+    private LibraryOperations dao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.book_details_fragment, container, false);
         super.onCreate(savedInstanceState);
-        mLibrary = new Library();
+
+        dao = new LibraryOperations(getContext());
+        dao.open();
 
         ImageView imageView = (ImageView) layout.findViewById(R.id.book_cover_img);
         TextView titleTextView = (TextView) layout.findViewById(R.id.book_title);
@@ -29,7 +32,8 @@ public class BookDetailsFragment extends Fragment {
 
         BookDetailsFragmentArgs args = BookDetailsFragmentArgs.fromBundle(getArguments());
         String bookid = args.getBookid();
-        Book book = mLibrary.getBook(bookid);
+        Book book = dao.findBook(Integer.valueOf(bookid));
+        dao.close();
         imageView.setImageResource(book.getCoverThumbId());
         imageView.setImageDrawable((getResources().getDrawable(book.getCoverThumbId())));
         titleTextView.setText(book.getTitle());
