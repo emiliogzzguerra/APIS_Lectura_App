@@ -13,8 +13,8 @@
 
         <argument
             android:name="bookid"
-            android:defaultValue="guerrero"
-            app:argType="string" />
+            android:defaultValue= "1"
+            app:argType= "integer" />
 
     </fragment>
 
