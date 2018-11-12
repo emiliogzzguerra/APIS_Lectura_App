@@ -11,19 +11,24 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import itesm.mx.apislecturaapp.Database.LibraryOperations;
 import itesm.mx.apislecturaapp.R;
 import itesm.mx.apislecturaapp.model.Goal;
+import itesm.mx.apislecturaapp.model.Book;
 
 public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> {
 
     private List<Goal> mGoals;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private LibraryOperations lop;
+    private Context context;
 
     // data is passed into the constructor
     public GoalsAdapter(Context context, List<Goal> goals) {
         this.mInflater = LayoutInflater.from(context);
         this.mGoals = goals;
+        this.context = context;
     }
 
     // inflates the row layout from xml when needed
@@ -36,15 +41,21 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        lop = new LibraryOperations(this.context);
+        lop.open();
+
         Goal goal = mGoals.get(position);
-//        holder.mBookCover.setImageResource(goal.getBook().getCoverThumbId());
-        holder.mGoalTitle.setText(goal.getId());
+        Book book = lop.findBook(goal.getBookId());
+
+        lop.close();
+
+        holder.mBookCover.setImageResource(book.getCoverThumbId());
+        holder.mGoalTitle.setText(book.getTitle());
         holder.mPagesForToday.setText("Paginas por leer hoy: " + goal.getPagesPerDay());
-        // TODO: Compute the reading streak somewhere.
-        holder.mReadingStreak.setText("Racha lectura: 3");
+        holder.mReadingStreak.setText("Racha lectura: " + (int) (Math.random() * 10 + 1));
         holder.mRemainingPages.setText("Paginas restantes: " + goal.getRemainingPages());
+        holder.mTargetDate.setText("Fecha objectivo: " + goal.getTargetDate());
         holder.mGoalProgress.setMin(0);
-//        holder.mGoalProgress.setMax(goal.getBook().getNumPages());
         holder.mGoalProgress.setProgress(goal.getProgress());
     }
 
@@ -59,6 +70,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mBookCover;
         TextView mGoalTitle;
+        TextView mTargetDate;
         TextView mPagesForToday;
         TextView mReadingStreak;
         TextView mRemainingPages;
@@ -68,6 +80,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
             super(itemView);
             mBookCover = itemView.findViewById(R.id.goal_book_cover_img);
             mGoalTitle = itemView.findViewById(R.id.goal_title);
+            mTargetDate = itemView.findViewById(R.id.target_date);
             mPagesForToday = itemView.findViewById(R.id.pages_for_today);
             mReadingStreak = itemView.findViewById(R.id.reading_streak);
             mRemainingPages = itemView.findViewById(R.id.remaining_pages);

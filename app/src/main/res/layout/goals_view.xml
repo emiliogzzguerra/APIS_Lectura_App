@@ -18,14 +18,4 @@
         android:gravity="center">
     </android.support.v7.widget.RecyclerView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:background="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:src="@drawable/ic_add_circle_outline_24px"
-        android:layout_margin="38dp"
-        app:layout_anchor="@id/goals_list"
-        app:layout_anchorGravity="bottom|right|end"/>
 </android.support.design.widget.CoordinatorLayout>

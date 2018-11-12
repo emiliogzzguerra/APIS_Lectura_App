@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +16,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import itesm.mx.apislecturaapp.Database.LibraryOperations;
 import itesm.mx.apislecturaapp.R;
-import itesm.mx.apislecturaapp.behavior.MainActivity;
 import itesm.mx.apislecturaapp.model.Book;
+import itesm.mx.apislecturaapp.behavior.MainActivity;
+import itesm.mx.apislecturaapp.fragments.NewGoalFragment;
+import itesm.mx.apislecturaapp.Database.LibraryOperations;
 
 public class BookDetailsFragment extends Fragment {
 
     private LibraryOperations dao;
-    private Button begin_book_button;
+    private NewGoalFragment newGoalFragment;
+    private static FragmentManager fragmentManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,10 +43,10 @@ public class BookDetailsFragment extends Fragment {
         TextView titleTextView = (TextView) layout.findViewById(R.id.book_title);
         TextView authorTextView = (TextView) layout.findViewById(R.id.book_author);
         TextView numPagesTextView = (TextView) layout.findViewById(R.id.book_pagenum);
-        Button begin_book_button = (Button) layout.findViewById(R.id.begin_book_btn);
+        Button new_goal_button = (Button) layout.findViewById(R.id.new_goal_btn);
 
         BookDetailsFragmentArgs args = BookDetailsFragmentArgs.fromBundle(getArguments());
-        int bookid = args.getBookid() + 1;
+        final int bookid = args.getBookid() + 1;
         System.out.println(bookid);
         Book book = dao.findBook(bookid);
         System.out.println(book.getAuthor());
@@ -52,9 +57,30 @@ public class BookDetailsFragment extends Fragment {
         authorTextView.setText(book.getAuthor());
         numPagesTextView.setText("" + book.getNumPages());
 
-        begin_book_button.setOnClickListener(new View.OnClickListener() {
+        new_goal_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+/*
+                    TODO: Transición hacia creación de nueva meta, si es posible pasando el id del libro
+*/
+
+                Toast.makeText(getActivity(), "Pasar a NewGoalFragment", Toast.LENGTH_SHORT).show();
+/*
+                String book_id_s = Integer.toString(bookid);
+
+                NewGoalFragment newGoalFragment = new NewGoalFragment();
+                fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.details_container, newGoalFragment, null);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+*/
+/*
+                Bundle bundle = new Bundle();
+                bundle.putString(book_id_s, "titulo");
+                newGoalFragment.setArguments(bundle);
+*/
+/*
                 NotificationCompat.Builder mBuilder =
                         new NotificationCompat.Builder(getContext())
                                 .setSmallIcon(R.drawable.ic_home_black_24dp)
@@ -82,6 +108,7 @@ public class BookDetailsFragment extends Fragment {
                                 (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         // mId allows you to update the notification later on.
                         mNotificationManager.notify(0, mBuilder.build());
+*/
             }
         });
 

@@ -3,5 +3,14 @@
     <string name="title_books">Libros</string>
     <string name="title_goals">Metas</string>
     <string name="title_notifications">Notificaciones</string>
+    <string name="register_progress">Registrar progreso</string>
+    <string name="progress_hint">15</string>
+    <string name="progress_title">Registra tu progreso</string>
+    <string name="notification_btn">Notificación</string>
+    <string name="new_goal_title">Nueva meta</string>
+    <string name="register_goal_btn">Registrar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

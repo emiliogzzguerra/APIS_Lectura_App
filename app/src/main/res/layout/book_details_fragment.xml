@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="77dp"
         android:text="Número de páginas"
-        app:layout_constraintBottom_toTopOf="@+id/begin_book_btn"
+        app:layout_constraintBottom_toTopOf="@+id/new_goal_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/book_cover_img" />
 
@@ -49,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/book_title" />
 
     <Button
-        android:id="@+id/begin_book_btn"
+        android:id="@+id/new_goal_btn"
         android:layout_width="168dp"
         android:layout_height="0dp"
         android:layout_marginBottom="45dp"
