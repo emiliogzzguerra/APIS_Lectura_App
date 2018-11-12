@@ -11,7 +11,9 @@ import android.widget.CalendarView;
 import android.widget.Toast;
 
 import java.time.LocalDate;
+import java.util.concurrent.ThreadLocalRandom;
 
+import androidx.navigation.Navigation;
 import itesm.mx.apislecturaapp.Database.LibraryOperations;
 import itesm.mx.apislecturaapp.R;
 import itesm.mx.apislecturaapp.model.Book;
@@ -30,7 +32,8 @@ public class NewGoalFragment extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.new_goal_fragment, container, false);
         super.onCreate(savedInstanceState);
-
+        
+        
         dao = new LibraryOperations(getContext());
 
         registerGoalBtn = layout.findViewById(R.id.register_goal_btn);
@@ -44,17 +47,35 @@ public class NewGoalFragment extends Fragment {
             }
         });
 
+        NewGoalFragmentArgs args = NewGoalFragmentArgs.fromBundle(getArguments());
+        final int bookid = args.getBookid();
+
         registerGoalBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 dao.open();
-
-                Goal new_goal = new Goal(0, 4, LocalDate.parse(targetDate), 312);
+                Book book = dao.findBook(bookid);
+                int numPages = 312;
+                if (book == null) {
+                    Toast.makeText(getActivity(),
+                            "Book id" + bookid + " is null",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    numPages = book.getNumPages();
+                }
+                int randomId = ThreadLocalRandom.current().nextInt( 0 , 19001 );
+                Goal new_goal = new Goal(randomId,
+                                         bookid,
+                                         LocalDate.parse(targetDate),
+                                         numPages);
                 long res = dao.createGoal(new_goal);
-                Toast.makeText(getActivity(), "Creado en: " + res, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Creado en: " + res, Toast.LENGTH_SHORT).show();
 
                 dao.close();
-                // TODO: Cambiar pantalla a index de libros o index de metas
+                NewGoalFragmentDirections.ActionNewGoalFragmentToNavigationGoals action =
+                        NewGoalFragmentDirections.actionNewGoalFragmentToNavigationGoals();
+                Navigation.findNavController(view).navigate(action);
             }
         });
         return layout;

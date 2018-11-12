@@ -13,11 +13,13 @@ import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.navigation.Navigation;
 import itesm.mx.apislecturaapp.R;
 import itesm.mx.apislecturaapp.model.Book;
 import itesm.mx.apislecturaapp.behavior.MainActivity;
@@ -57,14 +59,21 @@ public class BookDetailsFragment extends Fragment {
         authorTextView.setText(book.getAuthor());
         numPagesTextView.setText("" + book.getNumPages());
 
+
+
         new_goal_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 /*
                     TODO: Transición hacia creación de nueva meta, si es posible pasando el id del libro
+
 */
 
-                Toast.makeText(getActivity(), "Pasar a NewGoalFragment", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Pasar a NewGoalFragment", Toast.LENGTH_SHORT).show();
+                BookDetailsFragmentDirections.ActionBookDetailsFragmentToNewGoalFragment action =
+                        BookDetailsFragmentDirections.actionBookDetailsFragmentToNewGoalFragment();
+                action.setBookid(bookid);
+                Navigation.findNavController(v).navigate(action);
 /*
                 String book_id_s = Integer.toString(bookid);
 

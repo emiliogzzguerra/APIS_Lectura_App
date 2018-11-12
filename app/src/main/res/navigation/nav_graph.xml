@@ -16,6 +16,15 @@
             android:defaultValue= "1"
             app:argType= "integer" />
 
+        <action
+            android:id="@+id/action_bookDetailsFragment_to_NewGoalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/bookDetailsFragment"
+            app:destination="@id/newGoalFragment" />
+
     </fragment>
 
     <fragment
@@ -35,16 +44,16 @@
             android:id="@+id/action_booksIndexFragment_to_bookDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_out_left"
-            app:popExitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/navigation_books"
             app:destination="@id/bookDetailsFragment" />
         <action
             android:id="@+id/action_booksIndexFragment_to_newBookFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_out_left"
-            app:popExitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/navigation_books"
             app:destination="@id/newBookFragment" />
     </fragment>
@@ -56,8 +65,21 @@
 
     </fragment>
     <fragment
-        android:id="@+id/newReadingGoal"
-        android:name="itesm.mx.apislecturaapp.NewReadingGoal"
-        android:label="fragment_new_reading_goal"
-        tools:layout="@layout/new_goal_fragment" />
+        android:id="@+id/newGoalFragment"
+        android:name="itesm.mx.apislecturaapp.fragments.NewGoalFragment"
+        android:label="fragment_new_goal"
+        tools:layout="@layout/new_goal_fragment" >
+        <argument
+            android:name="bookid"
+            android:defaultValue= "1"
+            app:argType= "integer" />
+        </fragment>
+        <action
+        android:id="@+id/action_newGoalFragment_to_navigation_goals"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_up"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_up"
+        app:popUpTo="@id/navigation_books"
+        app:destination="@id/navigation_goals" />
 </navigation>
