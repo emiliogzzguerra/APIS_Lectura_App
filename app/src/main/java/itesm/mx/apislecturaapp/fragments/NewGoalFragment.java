@@ -31,6 +31,8 @@ public class NewGoalFragment extends Fragment {
         View layout = inflater.inflate(R.layout.new_goal_fragment, container, false);
         super.onCreate(savedInstanceState);
 
+        dao = new LibraryOperations(getContext());
+
         registerGoalBtn = layout.findViewById(R.id.register_goal_btn);
         registerGoalCalendar = layout.findViewById(R.id.register_goal_calendar);
 
@@ -45,8 +47,6 @@ public class NewGoalFragment extends Fragment {
         registerGoalBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-                dao = new LibraryOperations(getContext());
                 dao.open();
 
                 Goal new_goal = new Goal(0, 4, LocalDate.parse(targetDate), 312);
@@ -54,7 +54,7 @@ public class NewGoalFragment extends Fragment {
                 Toast.makeText(getActivity(), "Creado en: " + res, Toast.LENGTH_SHORT).show();
 
                 dao.close();
-
+                // TODO: Cambiar pantalla a index de libros o index de metas
             }
         });
         return layout;

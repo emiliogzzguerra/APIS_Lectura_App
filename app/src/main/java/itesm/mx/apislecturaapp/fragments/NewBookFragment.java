@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import itesm.mx.apislecturaapp.Database.LibraryOperations;
 import itesm.mx.apislecturaapp.R;
@@ -40,18 +41,16 @@ public class NewBookFragment extends Fragment {
             public void onClick(View v) {
                 dao.open();
 
-                long res = dao.addBook(new Book(
+                Book new_book = new Book(
                         0,
                         TitleField.getText().toString(),
                         AuthorField.getText().toString(),
-                        Integer.valueOf(PagesField.getText().toString()),
-                        R.drawable.newbook
-                ));
-
-                System.out.println("Adding book result = " + res);
-
+                        Integer.parseInt(PagesField.getText().toString()),
+                        R.drawable.newbook);
+                long res = dao.addBook(new_book);
 
                 dao.close();
+                // TODO: Cambiar pantalla a index de libros
             }
         });
         return layout;
