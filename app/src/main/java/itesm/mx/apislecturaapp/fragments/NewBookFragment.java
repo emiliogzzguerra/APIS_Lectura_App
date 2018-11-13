@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.navigation.Navigation;
 import itesm.mx.apislecturaapp.Database.LibraryOperations;
 import itesm.mx.apislecturaapp.R;
 import itesm.mx.apislecturaapp.model.Book;
@@ -38,7 +39,7 @@ public class NewBookFragment extends Fragment {
 
         AddBookButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 dao.open();
 
                 Book new_book = new Book(
@@ -51,6 +52,14 @@ public class NewBookFragment extends Fragment {
 
                 dao.close();
                 // TODO: Cambiar pantalla a index de libros
+                NewBookFragmentDirections.ActionNewBookFragmentToBooksIndex action =
+                        NewBookFragmentDirections.actionNewBookFragmentToBooksIndex();
+                Navigation.findNavController(view).navigate(action);
+                /*
+                NewGoalFragmentDirections.ActionNewGoalFragmentToNavigationGoals action =
+                        NewGoalFragmentDirections.actionNewGoalFragmentToNavigationGoals();
+                Navigation.findNavController(view).navigate(action);
+                */
             }
         });
         return layout;

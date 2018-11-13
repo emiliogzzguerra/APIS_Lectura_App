@@ -32,7 +32,14 @@
         android:name="itesm.mx.apislecturaapp.fragments.NewBookFragment"
         android:label="new_book_fragment"
         tools:layout="@layout/new_book_fragment" >
-
+        <action
+            android:id="@+id/action_newBookFragment_to_books_index"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_up"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_up"
+            app:popUpTo="@id/navigation_books"
+            app:destination="@id/navigation_books" />
     </fragment>
 
     <fragment
